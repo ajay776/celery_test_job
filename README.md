@@ -13,3 +13,8 @@ after success fully executed reponse look like
 
 
 url 2 used get the list of all the apps there in database 
+
+reponse format 
+
+![image](https://user-images.githubusercontent.com/71971326/229285759-f963bb3e-c415-47c1-8d0d-360dde1ec655.png)
+
