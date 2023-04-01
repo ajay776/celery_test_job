@@ -9,7 +9,9 @@ from bs4 import BeautifulSoup
 
 
 class PlayDataCreateView(APIView):
-       
+       """"
+       Api for inserting new app and if app allready in our DB then it will not insert it 
+       """
        def get(self, request):
               url =  "https://play.google.com/store/games?hl=en&gl=US"
               result = requests.get(url).text
@@ -19,12 +21,18 @@ class PlayDataCreateView(APIView):
               for anchor in heading:
                      print(anchor['href'])
                      name = anchor['href'].split('=')[1]
-                     app_obj = PlayStoreApp.objects.create(package_name=name)
+                     app = PlayStoreApp.objects.filter(package_name=name)
+                     if not app.exists():
+                            app_obj = PlayStoreApp.objects.create(package_name=name)
+                     else: print("app already exists")
               return Response("Data Stored Successfully")
        
 
 class PlayStoreDataView(APIView):
-              
+       '''
+       Retrieve all the records present in our db for play store app
+       '''
+           
        def get(self, request):
               data = PlayStoreApp.objects.all()
               serial = PlayStoreSerializer(data, many=True)
