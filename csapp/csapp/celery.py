@@ -11,6 +11,7 @@ app = Celery('celery_demo')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+# Scheduled a celery beat which excute every 15 seconds and fill our app details 
 app.conf.beat_schedule = {
     'add-every-5-seconds': {
         'task': 'src.tasks.update_app_details',
