@@ -7,6 +7,7 @@ from .models import PlayStoreApp
 
 @shared_task
 def update_app_details():
+#     updated all the app details in every 15 second
     app_obj = PlayStoreApp.objects.filter(package_detail__isnull=True).first()
     if app_obj:
         result = app(app_obj.package_name)
